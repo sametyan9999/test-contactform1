@@ -1,0 +1,120 @@
+/* 全体 */
+.form-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 30px;
+    color: #6d5645;
+}
+
+/* 各項目 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: red;
+    margin-left: 5px;
+}
+
+/* 名前（姓・名 横並び） */
+.name-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.name-inputs input {
+    flex: 1;
+}
+
+/* 共通フィールド */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* ラジオ */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    font-size: 15px;
+}
+
+/* エラー */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ボタン */
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-submit {
+    padding: 12px 30px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #6d5645;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #5a4636;
+}
+
+/* ヘッダー/フッター */
+.site-header,
+.site-footer {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.site-footer {
+    border-top: 1px solid #ddd;
+    border-bottom: none;
+    margin-top: 50px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6d5645;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
