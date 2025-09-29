@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'FashionablyLate') }}</title>
-
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     {{-- 共通CSS（フォーム用を既定で読み込み） --}}
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     @yield('css')
 </head>
 <body>

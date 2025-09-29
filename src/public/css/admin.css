@@ -1,0 +1,266 @@
+/* ベース */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+    color: #4b3d34;
+    line-height: 1.6;
+}
+
+.admin-wrapper {
+    width: 100%;
+    max-width: none;
+    /* ← 制限解除して画面幅いっぱいに */
+    margin: 50px auto;
+    padding: 0;
+    /* 左右の余白もゼロに */
+}
+
+.admin-title {
+    text-align: center;
+    font-size: 42px;
+    /* 少し大きめに */
+    font-weight: 700;
+    margin: 30px 0 40px;
+    color: #7d6c5e;
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    /* モダンなセリフ体 */
+    letter-spacing: 1px;
+}
+
+/* FashionablyLate のロゴ用 */
+.navbar-brand {
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #4b3d34;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+/* ==== フィルター ==== */
+.filters-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 26px;
+    flex-wrap: nowrap;
+}
+
+.filters-form input[type="text"],
+.filters-form select,
+.filters-form input[type="date"] {
+    padding: 12px 16px;
+    border: 1px solid #e0dad4;
+    border-radius: 6px;
+    background: #faf8f6;
+    font-size: 15px;
+    color: #4b3d34;
+    height: 44px;
+}
+
+.filters-form input[name="name"],
+.filters-form input[name="email"] {
+    width: 260px;
+}
+
+.filters-form select[name="gender"] {
+    width: 140px;
+}
+
+.filters-form select[name="category_id"] {
+    width: 240px;
+}
+
+.filters-form input[type="date"] {
+    width: 180px;
+}
+
+/* ボタン */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    height: 44px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.btn-search {
+    background: #7d6c5e;
+    color: #fff;
+}
+
+.btn-reset {
+    background: #d8c8b8;
+    color: #fff;
+}
+
+.btn-export {
+    background: #b8aea7;
+    color: #fff;
+}
+
+.btn-detail {
+    background: #eee;
+    border: 1px solid #ccc;
+    color: #4b3d34;
+    padding: 8px 14px;
+    border-radius: 4px;
+    height: auto;
+}
+
+.btn-delete {
+    background: #c44;
+    color: #fff;
+}
+
+/* ==== 上部バー ==== */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 24px;
+    padding: 0 10px;
+}
+
+/* ==== ページネーション ==== */
+.pagination-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pagination li a,
+.pagination li span {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #6a5b51;
+    background: #fff;
+    text-decoration: none;
+}
+
+.pagination li a:hover {
+    background: #eee;
+}
+
+.pagination .active span {
+    background: #7d6c5e;
+    color: #fff;
+    border-color: #7d6c5e;
+}
+
+/* 矢印のボタン */
+.pagination li:first-child a,
+.pagination li:last-child a {
+    font-size: 14px;
+    padding: 8px 10px;
+}
+
+/* ==== テーブル ==== */
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contact-table thead th {
+    background: #a08977;
+    color: #fff;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.contact-table td {
+    border: 1px solid #e9e4de;
+    padding: 16px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ==== モーダル ==== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #fff;
+    width: 800px;
+    max-width: 92%;
+    border-radius: 10px;
+    padding: 30px 28px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 26px;
+    cursor: pointer;
+    color: #7d6c5e;
+}
+
+.modal-title {
+    text-align: center;
+    margin-bottom: 14px;
+    color: #7d6c5e;
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+}
+
+.detail-list {
+    margin: 18px 0 14px;
+}
+
+.detail-list div {
+    display: flex;
+    gap: 24px;
+    padding: 10px 0;
+}
+
+.detail-list dt {
+    width: 180px;
+    color: #7d6c5e;
+    font-weight: 600;
+}
+
+.detail-list dd {
+    flex: 1;
+    color: #4b3d34;
+}
+
+.delete-form {
+    margin-top: 18px;
+    text-align: center;
+}

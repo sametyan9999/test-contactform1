@@ -31,4 +31,7 @@ Route::get('/confirm', function () { return redirect()->route('contacts.create')
 // 管理画面（中身は後で実装）
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-// /register と /login は後で実装
+Route::get('admin/contacts', [AdminController::class, 'index'])->name('admin.index');
+Route::get('admin/contacts/export', [AdminController::class, 'export'])->name('admin.export');
+Route::get('admin/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
+Route::delete('admin/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
