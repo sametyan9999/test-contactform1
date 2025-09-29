@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @endsection
 
@@ -8,9 +9,10 @@
 <div class="admin-wrapper">
     <h1 class="admin-title">Admin</h1>
 
-    {{-- フィルター（横一列） --}}
+    {{-- フィルター（横一列配置） --}}
     <form action="{{ route('admin.index') }}" method="GET" class="filters-form">
-        <input type="text" name="name" value="{{ request('name') }}" placeholder="名前やメールアドレスを入力してください">
+        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
+
         <select name="gender">
             <option value="" disabled {{ request('gender') === null || request('gender') === '' ? 'selected' : '' }}>性別</option>
             <option value="all" {{ request('gender') === 'all' ? 'selected' : '' }}>全て</option>
@@ -29,11 +31,12 @@
         </select>
 
         <input type="date" name="date" value="{{ request('date') }}">
+
         <button type="submit" class="btn btn-search">検索</button>
         <a href="{{ route('admin.index') }}" class="btn btn-reset">リセット</a>
     </form>
 
-    {{-- 上部バー --}}
+    {{-- 上部バー（エクスポート＋ページネーション） --}}
     <div class="topbar">
         <div class="topbar-left">
             <a href="{{ route('admin.export', request()->all()) }}" class="btn btn-export">エクスポート</a>

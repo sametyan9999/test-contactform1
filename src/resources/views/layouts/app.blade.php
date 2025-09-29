@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
     {{-- 共通CSS（フォーム用を既定で読み込み） --}}
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     @yield('css')
 </head>
 <body>

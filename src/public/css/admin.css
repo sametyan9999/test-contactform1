@@ -6,39 +6,28 @@
 body {
     background-color: #fff;
     font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
-    color: #4b3d34;
+    color: #7d6c5e;
+    /* 全体の文字色を参考画像のブラウン系に統一 */
     line-height: 1.6;
 }
 
+/* 全体の横幅 */
 .admin-wrapper {
-    width: 100%;
-    max-width: none;
-    /* ← 制限解除して画面幅いっぱいに */
+    width: 95%;
+    max-width: 1600px;
     margin: 50px auto;
     padding: 0;
-    /* 左右の余白もゼロに */
 }
 
+/* タイトル */
 .admin-title {
     text-align: center;
-    font-size: 42px;
-    /* 少し大きめに */
+    font-size: 34px;
     font-weight: 700;
     margin: 30px 0 40px;
     color: #7d6c5e;
-    font-family: 'Playfair Display', 'Times New Roman', serif;
-    /* モダンなセリフ体 */
-    letter-spacing: 1px;
-}
-
-/* FashionablyLate のロゴ用 */
-.navbar-brand {
-    font-family: 'Playfair Display', 'Times New Roman', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #4b3d34;
-    text-decoration: none;
-    letter-spacing: 1px;
+    font-family: 'DM Serif Display', serif;
+    letter-spacing: 0.5px;
 }
 
 /* ==== フィルター ==== */
@@ -46,82 +35,94 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 26px;
+    gap: 14px;
+    margin-bottom: 22px;
     flex-wrap: nowrap;
+    /* 横一列に */
 }
 
 .filters-form input[type="text"],
 .filters-form select,
 .filters-form input[type="date"] {
-    padding: 12px 16px;
-    border: 1px solid #e0dad4;
-    border-radius: 6px;
-    background: #faf8f6;
-    font-size: 15px;
-    color: #4b3d34;
-    height: 44px;
+    padding: 10px 14px;
+    border: 1px solid #cfc7c0;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    color: #7d6c5e;
+    height: 42px;
 }
 
-.filters-form input[name="name"],
-.filters-form input[name="email"] {
-    width: 260px;
-}
-
+/* 性別セレクトボックスの横幅調整 */
 .filters-form select[name="gender"] {
+    width: 100px;
+    /* コンパクトにする */
+    min-width: unset;
+    text-align: center;
+}
+
+/* お問い合わせ種類は少し広めに */
+.filters-form select[name="category_id"] {
+    width: 160px;
+}
+
+/* 日付はやや短め */
+.filters-form input[type="date"] {
     width: 140px;
 }
 
-.filters-form select[name="category_id"] {
-    width: 240px;
-}
-
-.filters-form input[type="date"] {
-    width: 180px;
-}
-
-/* ボタン */
+/* ==== ボタン ==== */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 20px;
-    height: 44px;
-    border-radius: 6px;
-    border: none;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid transparent;
     cursor: pointer;
     font-weight: 600;
-    white-space: nowrap;
     font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
+/* 検索 */
 .btn-search {
     background: #7d6c5e;
     color: #fff;
 }
 
+/* リセット */
 .btn-reset {
     background: #d8c8b8;
     color: #fff;
 }
 
+/* エクスポート */
 .btn-export {
-    background: #b8aea7;
-    color: #fff;
+    background: #ede6df;
+    /* 淡いベージュ */
+    color: #7d6c5e;
+    /* ブラウン文字 */
+    border: 1px solid #cfc7c0;
 }
 
+/* 詳細 */
 .btn-detail {
-    background: #eee;
+    background: #fff;
     border: 1px solid #ccc;
-    color: #4b3d34;
-    padding: 8px 14px;
-    border-radius: 4px;
-    height: auto;
+    color: #7d6c5e;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: 13px;
 }
 
+/* 削除 */
 .btn-delete {
     background: #c44;
     color: #fff;
+    border-radius: 3px;
 }
 
 /* ==== 上部バー ==== */
@@ -129,8 +130,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0 24px;
-    padding: 0 10px;
+    margin: 18px 0 22px;
+    padding: 0 6px;
 }
 
 /* ==== ページネーション ==== */
@@ -142,7 +143,6 @@ body {
 
 .pagination {
     display: flex;
-    gap: 8px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -151,18 +151,26 @@ body {
 .pagination li a,
 .pagination li span {
     display: inline-block;
-    padding: 8px 12px;
+    min-width: 28px;
+    text-align: center;
+    padding: 6px 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    line-height: 1.4;
-    color: #6a5b51;
+    font-size: 13px;
+    color: #7d6c5e;
+    /* ページ番号も淡ブラウン */
     background: #fff;
     text-decoration: none;
+    margin-left: -1px;
+}
+
+.pagination li:first-child a,
+.pagination li:last-child a {
+    font-size: 14px;
+    padding: 6px 10px;
 }
 
 .pagination li a:hover {
-    background: #eee;
+    background: #f2f0ee;
 }
 
 .pagination .active span {
@@ -171,32 +179,29 @@ body {
     border-color: #7d6c5e;
 }
 
-/* 矢印のボタン */
-.pagination li:first-child a,
-.pagination li:last-child a {
-    font-size: 14px;
-    padding: 8px 10px;
-}
-
 /* ==== テーブル ==== */
 .contact-table {
     width: 100%;
     border-collapse: collapse;
+    border: 1px solid #e9e4de;
 }
 
 .contact-table thead th {
     background: #a08977;
     color: #fff;
-    padding: 16px;
-    font-size: 15px;
+    padding: 12px;
+    font-size: 13px;
     font-weight: 600;
+    border-bottom: 1px solid #e9e4de;
 }
 
 .contact-table td {
-    border: 1px solid #e9e4de;
-    padding: 16px;
-    font-size: 14px;
+    border-bottom: 1px solid #e9e4de;
+    padding: 12px;
+    font-size: 13px;
     text-align: center;
+    color: #7d6c5e;
+    /* テーブル文字色も統一 */
 }
 
 /* ==== モーダル ==== */
@@ -215,52 +220,52 @@ body {
 
 .modal-content {
     background: #fff;
-    width: 800px;
+    width: 740px;
     max-width: 92%;
-    border-radius: 10px;
-    padding: 30px 28px;
+    border-radius: 8px;
+    padding: 24px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .25);
 }
 
 .modal-close {
     position: absolute;
-    top: 12px;
-    right: 18px;
-    font-size: 26px;
+    top: 10px;
+    right: 16px;
+    font-size: 22px;
     cursor: pointer;
     color: #7d6c5e;
 }
 
 .modal-title {
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     color: #7d6c5e;
-    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-family: 'DM Serif Display', serif;
 }
 
 .detail-list {
-    margin: 18px 0 14px;
+    margin: 14px 0 10px;
 }
 
 .detail-list div {
     display: flex;
-    gap: 24px;
-    padding: 10px 0;
+    gap: 16px;
+    padding: 6px 0;
 }
 
 .detail-list dt {
-    width: 180px;
+    width: 140px;
     color: #7d6c5e;
     font-weight: 600;
 }
 
 .detail-list dd {
     flex: 1;
-    color: #4b3d34;
+    color: #7d6c5e;
 }
 
 .delete-form {
-    margin-top: 18px;
+    margin-top: 12px;
     text-align: center;
 }
