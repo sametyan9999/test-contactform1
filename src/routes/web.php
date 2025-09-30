@@ -10,28 +10,22 @@ use App\Http\Controllers\AdminController;
 |--------------------------------------------------------------------------
 */
 
-// お問い合わせフォーム入力ページ
+// 📨 お問い合わせフォーム
 Route::get('/', [ContactController::class, 'create'])->name('contacts.create');
-
-// お問い合わせフォーム確認ページ（POSTのみ）
 Route::post('/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
-
-// 確認画面→修正（フォームに戻してold()を復元）
 Route::post('/back', [ContactController::class, 'back'])->name('contacts.back');
-
-// データ保存（確認画面から送信）
 Route::post('/store', [ContactController::class, 'store'])->name('contacts.store');
-
-// サンクスページ
 Route::get('/thanks', [ContactController::class, 'thanks'])->name('contacts.thanks');
 
-// 誤って GET /confirm に来たら入力ページへ
-Route::get('/confirm', function () { return redirect()->route('contacts.create'); });
+// 誤って GET /confirm に来たら入力ページへリダイレクト
+Route::get('/confirm', function () {
+    return redirect()->route('contacts.create');
+});
 
-// 管理画面（中身は後で実装）
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-
-Route::get('admin/contacts', [AdminController::class, 'index'])->name('admin.index');
-Route::get('admin/contacts/export', [AdminController::class, 'export'])->name('admin.export');
-Route::get('admin/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
-Route::delete('admin/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+// 🔧 管理画面
+Route::prefix('admin')->group(function () {
+    Route::get('/contacts', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/contacts/export', [AdminController::class, 'export'])->name('admin.export');
+    Route::get('/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::delete('/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+});

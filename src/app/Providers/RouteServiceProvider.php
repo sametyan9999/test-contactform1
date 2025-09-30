@@ -13,16 +13,18 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * The path to the "home" route for your application.
      *
-     * This is used by Laravel authentication to redirect users after login.
+     * ユーザーがログイン・登録後にリダイレクトされる先。
+     * 管理画面をトップにしたいので "/admin" に変更。
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/admin';
 
     /**
      * The controller namespace for the application.
      *
-     * When present, controller route declarations will automatically be prefixed with this namespace.
+     * Laravel 8 以降はデフォルトで null。
+     * 必要に応じて有効化できるが、通常はそのままでOK。
      *
      * @var string|null
      */
@@ -38,11 +40,13 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
+            // API ルート
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
+            // Web ルート
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
@@ -57,7 +61,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+            return Limit::perMinute(60)->by(
+                optional($request->user())->id ?: $request->ip()
+            );
         });
     }
 }

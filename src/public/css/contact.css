@@ -1,4 +1,6 @@
-/* 全体 */
+/* ===================== */
+/* お問い合わせフォーム用 */
+/* ===================== */
 .form-wrapper {
     max-width: 800px;
     margin: 40px auto;
@@ -44,6 +46,7 @@
 /* 共通フィールド */
 input[type="text"],
 input[type="email"],
+input[type="password"],
 select,
 textarea {
     width: 100%;
@@ -73,7 +76,7 @@ textarea {
     margin-top: 5px;
 }
 
-/* ボタン */
+/* ボタン（フォーム送信用） */
 .form-actions {
     text-align: center;
     margin-top: 30px;
@@ -93,28 +96,91 @@ textarea {
     background-color: #5a4636;
 }
 
-/* ヘッダー/フッター */
-.site-header,
-.site-footer {
-    border-bottom: 1px solid #ddd;
+/* ===================== */
+/* ヘッダー / フッター   */
+/* ===================== */
+.site-header {
+    background-color: #f5efeb;
+    border-bottom: 1px solid #e0d9d3;
     padding: 15px 0;
+    position: relative;
+}
+
+.logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    font-weight: 700;
     text-align: center;
+    color: #5c534a;
+    margin: 0;
+}
+
+.header-container {
+    position: relative;
+}
+
+.header-nav {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+/* 右上のリンクボタン */
+.btn-login,
+.btn-register,
+.btn-logout {
+    background: none;
+    border: 1px solid #b8b0aa;
+    color: #b8b0aa;
+    font-size: 14px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-login:hover,
+.btn-register:hover,
+.btn-logout:hover {
+    background: #b8b0aa;
+    color: #fff;
 }
 
 .site-footer {
     border-top: 1px solid #ddd;
     border-bottom: none;
     margin-top: 50px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+    padding: 15px 0;
+    text-align: center;
     color: #6d5645;
 }
 
+/* ===================== */
+/* レイアウト用コンテナ   */
+/* ===================== */
 .container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* 全画面で中央寄せレイアウトにする */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    /* 垂直中央 */
+    justify-content: center;
+    /* 水平中央 */
+    padding: 20px;
 }

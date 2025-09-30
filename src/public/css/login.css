@@ -1,0 +1,101 @@
+body {
+    background-color: #f3ede8;
+    font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+    color: #6d5645;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Login ページ全体 ===== */
+.login-page {
+    margin: 20px auto 0;
+    /* 上に寄せつつ中央寄せ */
+    text-align: center;
+}
+
+/* ===== タイトル（白枠の外） ===== */
+.login-header {
+    margin-bottom: 12px;
+}
+
+.login-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 34px;
+    font-weight: normal;
+    color: #6d5645;
+    margin: 0;
+}
+
+/* ===== 白枠カード ===== */
+.login-wrapper {
+    max-width: 720px;
+    /* 横幅を広げる */
+    margin: 0 auto;
+    background: #fff;
+    padding: 50px 60px;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* ===== フォーム ===== */
+.form-group {
+    margin-bottom: 28px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: #5c534a;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    /* 横幅いっぱい */
+    max-width: 100%;
+    /* はみ出し防止 */
+    padding: 16px 14px;
+    /* 高さ＆横長に */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #4a4039;
+    background: #fafafa;
+    box-sizing: border-box;
+    /* 横幅調整 */
+}
+
+.form-group input::placeholder {
+    color: #b0a9a3;
+    font-size: 15px;
+}
+
+/* ===== エラーメッセージ ===== */
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* ===== ボタン ===== */
+.form-actions {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.btn-login {
+    background-color: #6d5645;
+    color: #fff;
+    border: none;
+    padding: 10px 36px;
+    /* ボタンはコンパクトに */
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #5a4636;
+}
