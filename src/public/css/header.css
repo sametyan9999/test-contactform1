@@ -1,0 +1,47 @@
+/* public/css/header.css */
+/* ===================== */
+/* 共通ヘッダー用        */
+/* ===================== */
+
+.site-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0d9d3;
+    padding: 15px 0;
+    position: relative;
+}
+
+.logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: #5c534a;
+    margin: 0;
+}
+
+.header-nav {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+/* 共通のログイン/登録/ログアウトボタン */
+.header-nav .btn-login,
+.header-nav .btn-register,
+.header-nav .btn-logout {
+    background: none;
+    border: 1px solid #cfc7c0;
+    color: #a08977;
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.header-nav .btn-login:hover,
+.header-nav .btn-register:hover,
+.header-nav .btn-logout:hover {
+    background: #a08977;
+    color: #fff;
+}

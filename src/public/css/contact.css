@@ -2,185 +2,179 @@
 /* お問い合わせフォーム用 */
 /* ===================== */
 .form-wrapper {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
+    max-width: 720px;
+    margin: 60px auto;
+    padding: 0;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    border: none;
 }
 
+/* タイトル */
 .form-title {
     text-align: center;
-    font-size: 26px;
-    margin-bottom: 30px;
-    color: #6d5645;
+    font-size: 28px;
+    margin: 10px 0 25px;
+    color: #5c534a;
+    font-family: 'Libre Baskerville', serif;
 }
 
 /* 各項目 */
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    margin: 0;
+    border-bottom: none;
 }
 
 .form-group label {
+    width: 190px;
     font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
+    font-size: 16px;
+    color: #5c534a;
+    flex-shrink: 0;
+    text-align: left;
 }
 
 .required {
-    color: red;
+    color: #c77;
     margin-left: 5px;
 }
 
-/* 名前（姓・名 横並び） */
+/* 入力欄（共通：薄茶背景＋枠なし） */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    flex: 1;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 0;
+    font-size: 16px;
+    color: #5c534a;
+    background: #f9f5f0;
+    /* ★ 薄茶色 */
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* セレクト（お問い合わせの種類） */
+.form-group select {
+    flex: 1;
+    max-width: 400px;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 0;
+    font-size: 16px;
+    color: #b0a9a3;
+    /* 初期は淡いグレー */
+    background: #f9f5f0;
+    /* ★ 薄茶色 */
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0h12L6 7z' fill='%235c534a'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 7px;
+}
+
+.form-group select option {
+    color: #5c534a;
+}
+
+/* プレースホルダー */
+::placeholder {
+    color: #c0b6af;
+}
+
+/* 名前入力欄（姓・名 横並び） */
 .name-inputs {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    width: 100%;
 }
 
 .name-inputs input {
     flex: 1;
 }
 
-/* 共通フィールド */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 15px;
-    box-sizing: border-box;
-}
-
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-/* ラジオ */
-.radio-group {
+/* 電話番号（3分割） */
+.tel-inputs {
     display: flex;
-    gap: 20px;
-    font-size: 15px;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.tel-inputs input {
+    width: 30%;
+    padding: 12px 14px;
+    border: none;
+    text-align: center;
+    background: #f9f5f0;
+    /* ★ 薄茶色 */
+}
+
+.tel-inputs span {
+    flex-shrink: 0;
+    color: #5c534a;
+}
+
+/* 性別ラジオ */
+.radio-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #5c534a;
+}
+
+.radio-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    line-height: 1;
+}
+
+.radio-group input[type="radio"] {
+    margin: 0;
+    padding: 0;
+}
+
+/* お問い合わせ内容 */
+textarea {
+    min-height: 120px;
+    resize: none;
+    /* ★ リサイズできないようにする */
 }
 
 /* エラー */
 .error {
     color: red;
     font-size: 14px;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
-/* ボタン（フォーム送信用） */
+/* 確認ボタン */
 .form-actions {
     text-align: center;
     margin-top: 30px;
 }
 
 .btn-submit {
-    padding: 12px 30px;
+    padding: 12px 36px;
     font-size: 16px;
     color: #fff;
     background-color: #6d5645;
     border: none;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .btn-submit:hover {
     background-color: #5a4636;
-}
-
-/* ===================== */
-/* ヘッダー / フッター   */
-/* ===================== */
-.site-header {
-    background-color: #f5efeb;
-    border-bottom: 1px solid #e0d9d3;
-    padding: 15px 0;
-    position: relative;
-}
-
-.logo {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 26px;
-    font-weight: 700;
-    text-align: center;
-    color: #5c534a;
-    margin: 0;
-}
-
-.header-container {
-    position: relative;
-}
-
-.header-nav {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-}
-
-/* 右上のリンクボタン */
-.btn-login,
-.btn-register,
-.btn-logout {
-    background: none;
-    border: 1px solid #b8b0aa;
-    color: #b8b0aa;
-    font-size: 14px;
-    padding: 4px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.btn-login:hover,
-.btn-register:hover,
-.btn-logout:hover {
-    background: #b8b0aa;
-    color: #fff;
-}
-
-.site-footer {
-    border-top: 1px solid #ddd;
-    border-bottom: none;
-    margin-top: 50px;
-    padding: 15px 0;
-    text-align: center;
-    color: #6d5645;
-}
-
-/* ===================== */
-/* レイアウト用コンテナ   */
-/* ===================== */
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 全画面で中央寄せレイアウトにする */
-html,
-body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.site-main {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    /* 垂直中央 */
-    justify-content: center;
-    /* 水平中央 */
-    padding: 20px;
 }

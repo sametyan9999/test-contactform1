@@ -15,7 +15,7 @@
             <tr>
                 <th>お名前</th>
                 <td>
-                    {{ $validated['last_name'] }} {{ $validated['first_name'] }}
+                    {{ $validated['last_name'] }}　{{ $validated['first_name'] }}
                     <input type="hidden" name="last_name"  value="{{ $validated['last_name'] }}">
                     <input type="hidden" name="first_name" value="{{ $validated['first_name'] }}">
                 </td>
@@ -40,8 +40,10 @@
             <tr>
                 <th>電話番号</th>
                 <td>
-                    {{ $validated['tel'] }}
-                    <input type="hidden" name="tel" value="{{ $validated['tel'] }}">
+                    {{ $validated['tel1'] }}{{ $validated['tel2'] }}{{ $validated['tel3'] }}
+                    <input type="hidden" name="tel1" value="{{ $validated['tel1'] }}">
+                    <input type="hidden" name="tel2" value="{{ $validated['tel2'] }}">
+                    <input type="hidden" name="tel3" value="{{ $validated['tel3'] }}">
                 </td>
             </tr>
             <tr>
@@ -76,7 +78,6 @@
 
         <div class="confirm-buttons">
             <button type="submit" class="btn-submit">送信</button>
-        </div>
     </form>
 
     {{-- 修正用フォーム --}}
@@ -85,7 +86,6 @@
         @foreach($validated as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
         @endforeach
-        <div class="confirm-buttons">
             <button type="submit" class="btn-back">修正</button>
         </div>
     </form>

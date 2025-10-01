@@ -9,24 +9,32 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
-    
     public function index(Request $request)
     {
         $query = Contact::with('category');
 
-        // 名前検索（姓・名・フルネーム）
+        // 名前検索（姓・名・フルネーム：完全一致 + 部分一致）
         if ($request->filled('name')) {
             $name = $request->name;
             $query->where(function ($q) use ($name) {
-                $q->where('last_name', 'like', "%$name%")
+                // 完全一致
+                $q->where('last_name', $name)
+                  ->orWhere('first_name', $name)
+                  ->orWhereRaw("CONCAT(last_name, first_name) = ?", [$name])
+                // 部分一致
+                  ->orWhere('last_name', 'like', "%$name%")
                   ->orWhere('first_name', 'like', "%$name%")
                   ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%$name%"]);
             });
         }
 
-        // メールアドレス検索
+        // メールアドレス検索（完全一致 + 部分一致）
         if ($request->filled('email')) {
-            $query->where('email', 'like', "%{$request->email}%");
+            $email = $request->email;
+            $query->where(function ($q) use ($email) {
+                $q->where('email', $email)
+                  ->orWhere('email', 'like', "%$email%");
+            });
         }
 
         // 性別検索
@@ -68,24 +76,39 @@ class AdminController extends Controller
     {
         $query = Contact::with('category');
 
-        // 同じ検索条件を適用
+        // 名前検索（完全一致 + 部分一致）
         if ($request->filled('name')) {
             $name = $request->name;
             $query->where(function ($q) use ($name) {
-                $q->where('last_name', 'like', "%$name%")
+                $q->where('last_name', $name)
+                  ->orWhere('first_name', $name)
+                  ->orWhereRaw("CONCAT(last_name, first_name) = ?", [$name])
+                  ->orWhere('last_name', 'like', "%$name%")
                   ->orWhere('first_name', 'like', "%$name%")
                   ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%$name%"]);
             });
         }
+
+        // メールアドレス検索（完全一致 + 部分一致）
         if ($request->filled('email')) {
-            $query->where('email', 'like', "%{$request->email}%");
+            $email = $request->email;
+            $query->where(function ($q) use ($email) {
+                $q->where('email', $email)
+                  ->orWhere('email', 'like', "%$email%");
+            });
         }
+
+        // 性別検索
         if ($request->filled('gender') && $request->gender !== 'all') {
             $query->where('gender', $request->gender);
         }
+
+        // お問い合わせ種類検索
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->category_id);
         }
+
+        // 日付検索
         if ($request->filled('date')) {
             $query->whereDate('created_at', $request->date);
         }

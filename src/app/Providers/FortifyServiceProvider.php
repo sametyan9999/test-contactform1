@@ -9,6 +9,8 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Contracts\LoginResponse;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -47,12 +49,17 @@ class FortifyServiceProvider extends ServiceProvider
             return new class implements LoginResponse {
                 public function toResponse($request)
                 {
-                    return redirect('/admin'); // ← 修正箇所
+                    return redirect('/admin'); // ログイン後は管理画面へ
                 }
             };
         });
 
         // 新規ユーザー作成クラスのバインド
         $this->app->singleton(CreatesNewUsers::class, CreateNewUser::class);
+
+        // ✅ ログイン試行回数制限を無効化（開発環境用）
+        RateLimiter::for('login', function ($request) {
+            return Limit::none(); // 無制限
+        });
     }
 }

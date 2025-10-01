@@ -12,9 +12,8 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        $this->call(CategoriesTableSeeder::class);
-
-        \App\Models\Contact::factory(35)->create();
-    }
+{
+    $this->call(CategoriesTableSeeder::class);
+    $this->call(ContactsTableSeeder::class);
+}
 }

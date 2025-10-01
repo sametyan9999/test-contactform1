@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+@endsection
+
 @section('content')
 <div class="form-wrapper">
     <h1 class="form-title">Contact</h1>
@@ -16,7 +20,8 @@
             @error('first_name') <p class="error">{{ $message }}</p> @enderror
         </div>
 
-        <div class="form-group">
+        {{-- ★ 性別の form-group に専用クラスを追加 --}}
+        <div class="form-group gender">
             <label>性別 <span class="required">※</span></label>
             <div class="radio-group">
                 <label><input type="radio" name="gender" value="1" {{ old('gender') == 1 ? 'checked' : '' }}> 男性</label>
@@ -34,7 +39,13 @@
 
         <div class="form-group">
             <label>電話番号 <span class="required">※</span></label>
-            <input type="text" name="tel" value="{{ old('tel') }}" placeholder="例: 08012345678">
+            <div class="tel-inputs">
+                <input type="text" name="tel1" value="{{ old('tel1') }}" placeholder="080" maxlength="4">
+                <span>-</span>
+                <input type="text" name="tel2" value="{{ old('tel2') }}" placeholder="1234" maxlength="4">
+                <span>-</span>
+                <input type="text" name="tel3" value="{{ old('tel3') }}" placeholder="5678" maxlength="4">
+            </div>
             @error('tel') <p class="error">{{ $message }}</p> @enderror
         </div>
 

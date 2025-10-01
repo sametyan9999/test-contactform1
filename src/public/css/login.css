@@ -1,3 +1,5 @@
+/* public/css/login.css */
+
 body {
     background-color: #f3ede8;
     font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
@@ -9,13 +11,7 @@ body {
 /* ===== Login ページ全体 ===== */
 .login-page {
     margin: 20px auto 0;
-    /* 上に寄せつつ中央寄せ */
     text-align: center;
-}
-
-/* ===== タイトル（白枠の外） ===== */
-.login-header {
-    margin-bottom: 12px;
 }
 
 .login-title {
@@ -23,13 +19,12 @@ body {
     font-size: 34px;
     font-weight: normal;
     color: #6d5645;
-    margin: 0;
+    margin-bottom: 20px;
 }
 
 /* ===== 白枠カード ===== */
 .login-wrapper {
     max-width: 720px;
-    /* 横幅を広げる */
     margin: 0 auto;
     background: #fff;
     padding: 50px 60px;
@@ -38,35 +33,63 @@ body {
     text-align: left;
 }
 
-/* ===== フォーム ===== */
-.form-group {
-    margin-bottom: 28px;
+/* ===== フォーム（下線を徹底的に消す） ===== */
+.login-form {
+    border: none !important;
 }
 
-.form-group label {
+.login-form .form-group {
+    display: block !important;
+    margin-bottom: 26px;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    background-image: none !important;
+}
+
+.login-form .form-group::before,
+.login-form .form-group::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* ラベル */
+.login-form .form-group label {
     display: block;
     font-size: 16px;
     color: #5c534a;
     margin-bottom: 8px;
+    text-align: left;
+    /* 入力欄に揃える */
+    margin-left: 5%;
+    /* 入力欄と同じ揃え */
 }
 
-.form-group input {
-    width: 100%;
-    /* 横幅いっぱい */
-    max-width: 100%;
-    /* はみ出し防止 */
+/* 入力欄 */
+.login-form .form-group input {
+    display: block !important;
+    width: 90%;
+    /* 入力欄をやや狭め中央寄せ */
+    max-width: 600px;
+    margin: 0 auto;
     padding: 16px 14px;
-    /* 高さ＆横長に */
-    border: 1px solid #ccc;
+    border: 1px solid #ddd !important;
     border-radius: 6px;
     font-size: 16px;
     color: #4a4039;
     background: #fafafa;
     box-sizing: border-box;
-    /* 横幅調整 */
+    outline: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
 }
 
-.form-group input::placeholder {
+.login-form .form-group input:focus {
+    border-color: #b8b0aa !important;
+    background: #fff;
+}
+
+.login-form .form-group input::placeholder {
     color: #b0a9a3;
     font-size: 15px;
 }
@@ -89,7 +112,6 @@ body {
     color: #fff;
     border: none;
     padding: 10px 36px;
-    /* ボタンはコンパクトに */
     font-size: 15px;
     border-radius: 4px;
     cursor: pointer;
@@ -98,4 +120,21 @@ body {
 
 .btn-login:hover {
     background-color: #5a4636;
+}
+
+/* ===== 右上の register ボタン（参考画像風） ===== */
+.header-nav .btn-register {
+    background: none;
+    border: 1px solid #cfc7c0;
+    color: #a08977;
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.header-nav .btn-register:hover {
+    background: #a08977;
+    color: #fff;
 }

@@ -1,74 +1,118 @@
+/* public/css/register.css */
+
 body {
     background-color: #f3ede8;
     font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
     color: #6d5645;
+    margin: 0;
+    padding: 0;
 }
 
-/* 全体 */
-.register-wrapper {
-    max-width: 420px;
-    margin: 60px auto;
-    background: #fff;
-    padding: 40px 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* タイトル */
-.register-title {
+/* ===== Register ページ全体 ===== */
+.register-page {
+    margin: 20px auto 0;
     text-align: center;
-    font-size: 24px;
-    margin-bottom: 30px;
-    font-weight: bold;
-    color: #6d5645;
 }
 
-/* 各フォーム項目 */
-.form-group {
+.register-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 34px;
+    font-weight: normal;
+    color: #6d5645;
     margin-bottom: 20px;
 }
 
-.form-group label {
+/* ===== 白枠カード ===== */
+.register-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 50px 60px;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* ===== フォーム ===== */
+.register-form {
+    border: none !important;
+}
+
+.register-form .form-group {
+    display: block !important;
+    margin-bottom: 26px;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    width: 90%;
+    /* ラベルと入力欄の幅を揃える */
+    max-width: 480px;
+    /* 入力欄の最大幅 */
+    margin: 0 auto;
+    /* 中央寄せ */
+}
+
+.register-form .form-group::before,
+.register-form .form-group::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* ラベル */
+.register-form .form-group label {
     display: block;
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: #444;
+    font-size: 16px;
+    color: #5c534a;
+    margin-bottom: 8px;
+    text-align: left;
+    /* ラベルは左寄せ */
 }
 
-.form-group input {
+/* 入力欄 */
+.register-form .form-group input {
+    display: block !important;
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 15px;
-    background: #f9f9f9;
-    color: #333;
+    padding: 14px 12px;
+    border: 1px solid #ddd !important;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #4a4039;
+    background: #fafafa;
+    box-sizing: border-box;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-.form-group input::placeholder {
-    color: #bbb;
+.register-form .form-group input:focus {
+    border-color: #b8b0aa !important;
+    background: #fff;
+}
+
+.register-form .form-group input::placeholder {
+    color: #b0a9a3;
+    font-size: 15px;
 }
 
 /* エラーメッセージ */
 .error {
     color: red;
     font-size: 13px;
-    margin-top: 4px;
+    margin-top: 5px;
 }
 
 /* ボタン */
 .form-actions {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .btn-register {
     background-color: #6d5645;
     color: #fff;
     border: none;
-    padding: 12px 40px;
+    padding: 10px 36px;
+    font-size: 15px;
     border-radius: 4px;
-    font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -77,18 +121,19 @@ body {
     background-color: #5a4636;
 }
 
-/* loginボタンを右上に配置 */
-.site-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.site-header .btn-login {
-    font-size: 14px;
-    color: #aaa;
-    text-decoration: none;
-    border: 1px solid #ddd;
+/* 右上の login ボタン（参考画像風） */
+.header-nav .btn-login {
+    background: none;
+    border: 1px solid #cfc7c0;
+    color: #a08977;
+    font-size: 13px;
     padding: 4px 12px;
     border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.header-nav .btn-login:hover {
+    background: #a08977;
+    color: #fff;
 }

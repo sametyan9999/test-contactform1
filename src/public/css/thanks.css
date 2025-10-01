@@ -1,42 +1,76 @@
+/* ===================== */
+/* サンクスページ         */
+/* ===================== */
 .thanks-wrapper {
+    position: relative;
+    min-height: 100vh;
+    /* 画面全体に配置 */
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    /* 中央の要素間を少し広めに */
     text-align: center;
-    padding: 100px 20px;
-    position: relative;
+    overflow: hidden;
 }
 
+/* 背景の "Thank you" */
+.thanks-wrapper::before {
+    content: "Thank you";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+    white-space: nowrap;
+    font-size: clamp(120px, 22vw, 260px);
+    line-height: 1;
+    color: rgba(92, 83, 74, 0.05);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* メッセージ（中央） */
 .thanks-message {
-    font-size: 18px;
-    margin-bottom: 40px;
-    color: #6d5645;
     position: relative;
-    z-index: 2;
+    z-index: 1;
+    margin: 0;
+    font-size: 24px;
+    /* ← 少し大きく */
+    color: #6d5645;
+    font-weight: 600;
+    letter-spacing: 0.04em;
 }
 
+/* HOME ボタン（中央） */
 .btn-home {
-    display: inline-block;
-    padding: 12px 40px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #6d5645;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background .3s;
     position: relative;
-    z-index: 2;
+    z-index: 1;
+    display: inline-block;
+    width: 150px;
+    /* ← 横幅を広げる */
+    padding: 14px 0;
+    /* ← 高さを広げる */
+    border-radius: 4px;
+    background-color: #6d5645;
+    color: #fff;
+    font-size: 16px;
+    /* ← 文字も大きく */
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background .25s ease;
 }
 
 .btn-home:hover {
     background-color: #5a4636;
 }
 
-.thanks-wrapper::before {
-    content: "Thank you";
-    font-size: 120px;
-    color: rgba(0, 0, 0, .05);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-    z-index: 1;
+/* もしヘッダー（FashionablyLate）が不要なら非表示に */
+header {
+    display: none;
 }
