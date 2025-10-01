@@ -48,6 +48,6 @@
     </div>
 </footer> --}}
 
-@yield('js')
+@yield('scripts')
 </body>
 </html>

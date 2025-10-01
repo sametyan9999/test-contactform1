@@ -211,7 +211,11 @@ body {
     background: rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 40px 0;
+    /* 上下の余白をやや小さくして縦長に */
+    z-index: 1000;
+    overflow-y: auto;
 }
 
 .modal.hidden {
@@ -220,52 +224,94 @@ body {
 
 .modal-content {
     background: #fff;
-    width: 740px;
-    max-width: 92%;
-    border-radius: 8px;
-    padding: 24px;
+    width: 720px;
+    height: auto;
+    /* コンテンツ量に応じて伸縮 */
+    min-height: 600px;
+    /* 縦長の基準 */
+    max-width: 95%;
+    border-radius: 4px;
+    /* 角を少し尖らせる */
+    padding: 50px 70px;
     position: relative;
     box-shadow: 0 8px 28px rgba(0, 0, 0, .25);
+    color: #7d6c5e;
+    font-size: 17px;
+    /* 文字サイズを拡大 */
+    line-height: 1.9;
+    /* 行間も少し広め */
 }
 
+/* × ボタン */
 .modal-close {
     position: absolute;
-    top: 10px;
-    right: 16px;
-    font-size: 22px;
+    top: 20px;
+    right: 20px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #cfc7c0;
+    border-radius: 50%;
+    /* 丸い × ボタン */
+    background: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 32px;
+    text-align: center;
     cursor: pointer;
     color: #7d6c5e;
+    transition: background 0.2s, color 0.2s;
 }
 
-.modal-title {
-    text-align: center;
-    margin-bottom: 12px;
-    color: #7d6c5e;
-    font-family: 'DM Serif Display', serif;
+.modal-close:hover {
+    background: #7d6c5e;
+    color: #fff;
 }
 
+/* 詳細リスト */
 .detail-list {
-    margin: 14px 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 50px;
 }
 
 .detail-list div {
     display: flex;
-    gap: 16px;
-    padding: 6px 0;
+    align-items: flex-start;
+    gap: 28px;
 }
 
 .detail-list dt {
-    width: 140px;
+    width: 180px;
+    font-weight: bold;
     color: #7d6c5e;
-    font-weight: 600;
+    font-size: 17px;
 }
 
 .detail-list dd {
     flex: 1;
-    color: #7d6c5e;
+    margin: 0;
+    color: #4a3d34;
+    font-size: 17px;
+    word-break: break-word;
+}
+
+/* 削除ボタン */
+.btn-delete {
+    background: #b34530;
+    color: #fff;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 4px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-delete:hover {
+    background: #922d1a;
 }
 
 .delete-form {
-    margin-top: 12px;
     text-align: center;
 }

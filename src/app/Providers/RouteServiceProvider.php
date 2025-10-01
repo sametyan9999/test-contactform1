@@ -11,53 +11,33 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * The path to the "home" route for your application.
-     *
-     * ユーザーがログイン・登録後にリダイレクトされる先。
-     * 管理画面をトップにしたいので "/admin" に変更。
-     *
-     * @var string
+     * ログイン成功後に必ず飛ばす場所（基本は / にしておく）
      */
-    public const HOME = '/admin';
+    public const HOME = '/';
 
     /**
      * The controller namespace for the application.
-     *
-     * Laravel 8 以降はデフォルトで null。
-     * 必要に応じて有効化できるが、通常はそのままでOK。
      *
      * @var string|null
      */
     // protected $namespace = 'App\\Http\\Controllers';
 
-    /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
-     */
     public function boot()
     {
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            // API ルート
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            // Web ルート
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }
 
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {

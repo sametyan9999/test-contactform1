@@ -14,7 +14,7 @@
 
         <div class="form-group">
             <label for="name">お名前</label>
-            <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="例: 山田 太郎" required>
+            <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="例: 山田 太郎">
             @error('name')
                 <p class="error">{{ $message }}</p>
             @enderror
@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <label for="email">メールアドレス</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com" required>
+            <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com">
             @error('email')
                 <p class="error">{{ $message }}</p>
             @enderror
@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <label for="password">パスワード</label>
-            <input id="password" type="password" name="password" placeholder="例: coachtechno6" required>
+            <input id="password" type="password" name="password" placeholder="例: coachtechno6">
             @error('password')
                 <p class="error">{{ $message }}</p>
             @enderror

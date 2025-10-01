@@ -9,7 +9,7 @@
 <div class="admin-wrapper">
     <h1 class="admin-title">Admin</h1>
 
-    {{-- フィルター（横一列配置） --}}
+    {{-- フィルター --}}
     <form action="{{ route('admin.index') }}" method="GET" class="filters-form">
         <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
 
@@ -36,7 +36,7 @@
         <a href="{{ route('admin.index') }}" class="btn btn-reset">リセット</a>
     </form>
 
-    {{-- 上部バー（エクスポート＋ページネーション） --}}
+    {{-- 上部バー --}}
     <div class="topbar">
         <div class="topbar-left">
             <a href="{{ route('admin.export', request()->all()) }}" class="btn btn-export">エクスポート</a>
@@ -70,7 +70,7 @@
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->category->content ?? '' }}</td>
                     <td>
-                        <button class="btn btn-detail" data-id="{{ $contact->id }}">詳細</button>
+                        <button type="button" class="btn btn-detail" data-id="{{ $contact->id }}">詳細</button>
                     </td>
                 </tr>
             @empty
@@ -84,7 +84,7 @@
 <div id="modal" class="modal hidden">
     <div class="modal-content">
         <span class="modal-close">&times;</span>
-        <div id="modal-body"><!-- Ajaxで差し込み --></div>
+        <div id="modal-body"></div>
     </div>
 </div>
 @endsection
@@ -96,37 +96,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalBody = document.getElementById("modal-body");
     const closeBtn = document.querySelector(".modal-close");
 
+    // 詳細ボタンイベント
     document.querySelectorAll(".btn-detail").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
             const id = btn.dataset.id;
-            fetch(`/admin/contacts/${id}`)
-                .then(res => res.json())
-                .then(data => {
-                    modalBody.innerHTML = `
-                        <h2 class="modal-title">詳細</h2>
-                        <dl class="detail-list">
-                          <div><dt>お名前</dt><dd>${data.last_name} ${data.first_name}</dd></div>
-                          <div><dt>性別</dt><dd>${data.gender == 1 ? "男性" : (data.gender == 2 ? "女性" : "その他")}</dd></div>
-                          <div><dt>メールアドレス</dt><dd>${data.email}</dd></div>
-                          <div><dt>電話番号</dt><dd>${data.tel ?? ""}</dd></div>
-                          <div><dt>住所</dt><dd>${data.address ?? ""}</dd></div>
-                          <div><dt>建物名</dt><dd>${data.building ?? ""}</dd></div>
-                          <div><dt>お問い合わせの種類</dt><dd>${data.category?.content ?? ""}</dd></div>
-                          <div><dt>お問い合わせ内容</dt><dd>${data.detail ?? ""}</dd></div>
-                        </dl>
-                        <form method="POST" action="/admin/contacts/${data.id}" class="delete-form">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn btn-delete">削除</button>
-                        </form>
-                    `;
-                    modal.classList.remove("hidden");
-                });
+            try {
+                const res = await fetch(`/admin/contacts/${id}`);
+                if (!res.ok) throw new Error("データ取得に失敗しました");
+
+                const data = await res.json();
+
+                // モーダルHTML挿入
+                modalBody.innerHTML = `
+                    <dl class="detail-list">
+                        <div><dt>お名前</dt><dd>${data.last_name} ${data.first_name}</dd></div>
+                        <div><dt>性別</dt><dd>${data.gender == 1 ? "男性" : (data.gender == 2 ? "女性" : "その他")}</dd></div>
+                        <div><dt>メールアドレス</dt><dd>${data.email}</dd></div>
+                        <div><dt>電話番号</dt><dd>${data.tel ?? ""}</dd></div>
+                        <div><dt>住所</dt><dd>${data.address ?? ""}</dd></div>
+                        <div><dt>建物名</dt><dd>${data.building ?? ""}</dd></div>
+                        <div><dt>お問い合わせの種類</dt><dd>${data.category?.content ?? ""}</dd></div>
+                        <div><dt>お問い合わせ内容</dt><dd>${data.detail ?? ""}</dd></div>
+                    </dl>
+                    <form method="POST" action="/admin/contacts/${data.id}" class="delete-form">
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-delete">削除</button>
+                    </form>
+                `;
+                modal.classList.remove("hidden");
+            } catch (err) {
+                alert(err.message);
+            }
         });
     });
 
+    // 閉じるイベント
     closeBtn.addEventListener("click", () => modal.classList.add("hidden"));
-    modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.add("hidden");
+    });
 });
 </script>
 @endsection

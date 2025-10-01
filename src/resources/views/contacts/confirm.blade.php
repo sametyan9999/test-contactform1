@@ -15,7 +15,7 @@
             <tr>
                 <th>お名前</th>
                 <td>
-                    {{ $validated['last_name'] }}　{{ $validated['first_name'] }}
+                    {{ $validated['last_name'] }} {{ $validated['first_name'] }}
                     <input type="hidden" name="last_name"  value="{{ $validated['last_name'] }}">
                     <input type="hidden" name="first_name" value="{{ $validated['first_name'] }}">
                 </td>

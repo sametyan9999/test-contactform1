@@ -7,6 +7,8 @@ use Laravel\Fortify\Fortify;
 use App\Actions\Fortify\CreateNewUser;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Laravel\Fortify\Contracts\LoginResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -23,15 +25,14 @@ class FortifyServiceProvider extends ServiceProvider
         // 登録画面ビュー
         Fortify::registerView(fn () => view('auth.register'));
 
-        // ログイン処理（ここで validate を呼ぶ）
-        Fortify::authenticateUsing(function ($request) {
-            // ✅ バリデーションをここで強制実行
+        // ログイン処理（バリデーション込み）
+        Fortify::authenticateUsing(function (Request $request) {
             $credentials = $request->validate([
-                'email' => ['required', 'email'],
+                'email'    => ['required', 'email'],
                 'password' => ['required'],
             ], [
-                'email.required' => 'メールアドレスを入力してください',
-                'email.email'    => 'メールアドレスはメール形式で入力してください',
+                'email.required'    => 'メールアドレスを入力してください',
+                'email.email'       => 'メールアドレスはメール形式で入力してください',
                 'password.required' => 'パスワードを入力してください',
             ]);
 
@@ -39,6 +40,16 @@ class FortifyServiceProvider extends ServiceProvider
                 return Auth::user();
             }
             return null;
+        });
+
+        // ✅ ログイン成功後は必ず /admin にリダイレクト
+        $this->app->singleton(LoginResponse::class, function () {
+            return new class implements LoginResponse {
+                public function toResponse($request)
+                {
+                    return redirect('/admin'); // ← 修正箇所
+                }
+            };
         });
 
         // 新規ユーザー作成クラスのバインド

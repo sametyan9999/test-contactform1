@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
+    
     public function index(Request $request)
     {
         $query = Contact::with('category');

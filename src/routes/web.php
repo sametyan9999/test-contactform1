@@ -22,10 +22,16 @@ Route::get('/confirm', function () {
     return redirect()->route('contacts.create');
 });
 
-// 🔧 管理画面
-Route::prefix('admin')->group(function () {
-    Route::get('/contacts', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/contacts/export', [AdminController::class, 'export'])->name('admin.export');
-    Route::get('/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
-    Route::delete('/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+// 🔧 管理画面（ログイン必須にする）
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/contacts/export', [AdminController::class, 'export'])->name('admin.export');
+    Route::get('/admin/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::delete('/admin/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
+
+// 🔑 ログイン & ユーザー登録
+// Fortify が自動で以下のルートを提供しているので、ここに追加で書く必要はありません。
+// - /login (GET, POST)
+// - /register (GET, POST)
+// FortifyServiceProvider で loginView / registerView を設定すれば OK。
