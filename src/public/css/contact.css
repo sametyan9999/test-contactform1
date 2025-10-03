@@ -22,7 +22,6 @@
 .form-group {
     display: flex;
     align-items: flex-start;
-    /* 上揃え */
     padding: 16px 0;
     margin: 0;
     border-bottom: none;
@@ -60,15 +59,39 @@
     border: none;
     border-radius: 0;
     font-size: 16px;
-    color: #5c534a;
-    background: #f9f5f0;
+    color: #6b4f3f;
+    /* 茶色の文字 */
+    background: #f0f0f0;
+    /* 薄いグレー背景 */
     box-sizing: border-box;
     outline: none;
 }
 
+/* セレクト（お問い合わせの種類） */
+.form-group select {
+    flex: 1;
+    max-width: 300px;
+    /* ← 幅を少し小さく */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0h12L6 7z' fill='%236b4f3f'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 7px;
+}
+
+.form-group select option {
+    color: #6b4f3f;
+    /* 全部同じ茶色 */
+    opacity: 0.8;
+    /* 透明度で薄さを揃える */
+}
+
 /* プレースホルダー */
 ::placeholder {
-    color: #c0b6af;
+    color: #a38b7a;
+    /* 薄めの茶色 */
 }
 
 /* 名前入力欄（姓・名 横並び） */
@@ -78,7 +101,7 @@
     width: 100%;
 }
 
-.name-inputs .input-box {
+.name-inputs input {
     flex: 1;
 }
 
@@ -92,15 +115,7 @@
 
 .tel-inputs input {
     width: 30%;
-    padding: 12px 14px;
-    border: none;
     text-align: center;
-    background: #f9f5f0;
-}
-
-.tel-inputs span {
-    flex-shrink: 0;
-    color: #5c534a;
 }
 
 /* 性別ラジオ */
@@ -109,7 +124,7 @@
     align-items: center;
     gap: 16px;
     font-size: 16px;
-    color: #5c534a;
+    color: #6b4f3f;
 }
 
 .radio-group label {

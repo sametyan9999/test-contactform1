@@ -1,4 +1,3 @@
-/* public/css/header.css */
 /* ===================== */
 /* 共通ヘッダー用        */
 /* ===================== */
@@ -25,23 +24,28 @@
     right: 20px;
 }
 
-/* 共通のログイン/登録/ログアウトボタン */
+/* ==== ログイン／登録／ログアウトボタン ==== */
 .header-nav .btn-login,
 .header-nav .btn-register,
 .header-nav .btn-logout {
-    background: none;
-    border: 1px solid #cfc7c0;
-    color: #a08977;
+    background-color: #f2f0ee;
+    /* 薄いグレー背景 */
+    color: #7d6c5e;
+    /* 茶色文字 */
+    border: 1px solid #d8cfc8;
     font-size: 13px;
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 4px;
     text-decoration: none;
+    cursor: pointer;
     transition: all 0.2s;
 }
 
+/* hover 時 */
 .header-nav .btn-login:hover,
 .header-nav .btn-register:hover,
 .header-nav .btn-logout:hover {
-    background: #a08977;
-    color: #fff;
+    background-color: #e6e0da;
+    /* hoverで少し濃いグレー */
+    color: #5c4a3d;
 }

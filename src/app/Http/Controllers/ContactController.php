@@ -14,7 +14,8 @@ class ContactController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('contacts.create', compact('categories'));
+        // ✅ create → contact に変更
+        return view('contacts.contact', compact('categories'));
     }
 
     /**

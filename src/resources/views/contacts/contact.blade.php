@@ -92,7 +92,7 @@
             <label>お問い合わせの種類 <span class="required">※</span></label>
             <div class="input-box">
                 <select name="category_id">
-                    <option value="">選択してください</option>
+                    <option value="" {{ old('category_id') ? '' : 'selected' }}>選択してください</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
                             {{ $category->content }}

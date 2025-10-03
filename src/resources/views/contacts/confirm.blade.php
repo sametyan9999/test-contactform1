@@ -40,7 +40,7 @@
             <tr>
                 <th>電話番号</th>
                 <td>
-                    {{ $validated['tel1'] }}{{ $validated['tel2'] }}{{ $validated['tel3'] }}
+                    {{ $validated['tel1'] }}-{{ $validated['tel2'] }}-{{ $validated['tel3'] }}
                     <input type="hidden" name="tel1" value="{{ $validated['tel1'] }}">
                     <input type="hidden" name="tel2" value="{{ $validated['tel2'] }}">
                     <input type="hidden" name="tel3" value="{{ $validated['tel3'] }}">
