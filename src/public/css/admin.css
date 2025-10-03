@@ -7,7 +7,6 @@ body {
     background-color: #fff;
     font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
     color: #5c4a3d;
-    /* より濃いブラウン */
     line-height: 1.7;
 }
 
@@ -16,21 +15,24 @@ body {
     width: 100%;
     margin: 30px auto;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 /* 共通の内側コンテナ */
 .admin-inner {
-    width: 97%;
-    max-width: 1200px;
+    width: 95%;
+    max-width: 1080px;
+    /* ← 960px から少し広げた */
     margin: 0 auto;
 }
 
 /* タイトル */
 .admin-title {
     text-align: center;
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 700;
-    margin: 20px 0 30px;
+    margin: 10px 0 20px;
     color: #5c4a3d;
     font-family: 'DM Serif Display', serif;
     letter-spacing: 0.5px;
@@ -49,7 +51,8 @@ body {
 
 .filters-form input[type="text"],
 .filters-form select,
-.filters-form input[type="date"] {
+.filters-form input[type="date"],
+.filters-form input[type="text"][name="date"] {
     padding: 10px 14px;
     border: 1px solid #cfc7c0;
     border-radius: 4px;
@@ -68,8 +71,6 @@ body {
     border: 1px solid #cfc7c0;
     border-radius: 4px;
     cursor: pointer;
-
-    /* ▼ 薄い逆三角形 */
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0h12L6 7z' fill='%23aaa'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
@@ -89,24 +90,38 @@ body {
 }
 
 /* 名前やメールアドレス入力欄 */
-.filters-form input[type="text"] {
-    width: 320px;
+.filters-form input[type="text"]:not([name="date"]) {
+    flex: 1;
+    min-width: 300px;
+    /* ← 260px → 300px に広げる */
+    max-width: 480px;
+    /* ← 420px → 480px に広げる */
+    padding: 10px 14px;
+    border: 1px solid #cfc7c0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 15px;
+    color: #5c4a3d;
+    height: 42px;
 }
 
 /* 日付欄 */
-.filters-form input[type="date"] {
+.filters-form input[name="date"] {
     width: 160px;
+    padding: 10px 14px;
+    border: 1px solid #cfc7c0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 15px;
+    color: #5c4a3d;
+    height: 42px;
+    cursor: pointer;
+
+    /* ▼ 三角アイコンを背景に追加（セレクトと同じデザイン） */
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0h12L6 7z' fill='%23aaa'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px 7px;
-}
-
-.filters-form input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
 }
 
 /* ==== ボタン ==== */
@@ -123,33 +138,26 @@ body {
     white-space: nowrap;
 }
 
-/* 検索 */
 .btn-search {
     background: #7d6c5e;
     color: #fff;
 }
 
-/* リセット */
 .btn-reset {
     background: #d8c8b8;
     color: #fff;
 }
 
-/* エクスポート */
 .btn-export {
     background: #ede6df;
     color: #5c4a3d;
     border: 1px solid #cfc7c0;
 }
 
-/* 詳細ボタン（枠線と文字だけ、薄い茶色） */
 .btn-detail {
     background: transparent;
-    /* 背景なし */
     border: 1px solid #cfc7c0;
-    /* 薄い茶色の枠線 */
     color: #7d6c5e;
-    /* 薄茶色の文字 */
     padding: 6px 14px;
     border-radius: 4px;
     font-size: 14px;
@@ -158,11 +166,9 @@ body {
 
 .btn-detail:hover {
     background: #f6f4f2;
-    /* ホバー時にほんのり色付け */
     color: #5c4a3d;
 }
 
-/* 削除 */
 .btn-delete {
     background: #c44;
     color: #fff;
@@ -230,26 +236,20 @@ body {
     table-layout: auto;
 }
 
-/* ヘッダー */
 .contact-table thead th {
     background: #a08977;
     color: #fff;
     padding: 14px;
-    /* ← 18pxから少し狭く */
     font-size: 16px;
     line-height: 1.6;
-    /* ← 行間も少し狭め */
     font-weight: 600;
 }
 
-/* セル */
 .contact-table td {
     border-bottom: 1px solid #e9e4de;
     padding: 14px;
-    /* ← 18pxから狭く */
     font-size: 16px;
     line-height: 1.6;
-    /* ← 行間狭め */
     text-align: center;
     color: #5c4a3d;
 }
@@ -285,7 +285,6 @@ body {
     line-height: 1.9;
 }
 
-/* × ボタン */
 .modal-close {
     position: absolute;
     top: 20px;
@@ -309,7 +308,6 @@ body {
     color: #fff;
 }
 
-/* 詳細リスト */
 .detail-list {
     display: flex;
     flex-direction: column;
@@ -338,7 +336,6 @@ body {
     word-break: break-word;
 }
 
-/* 削除ボタン */
 .btn-delete {
     background: #b34530;
     color: #fff;

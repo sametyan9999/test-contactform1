@@ -11,14 +11,16 @@ class ContactFactory extends Factory
     {
         return [
             'category_id' => Category::inRandomOrder()->first()->id ?? 1,
-            'first_name'  => $this->faker->firstName,
-            'last_name'   => $this->faker->lastName,
-            'gender'      => $this->faker->numberBetween(1, 3),
-            'email'       => $this->faker->unique()->safeEmail,
-            'tel'         => $this->faker->phoneNumber,
-            'address'     => $this->faker->address,
-            'building'    => $this->faker->secondaryAddress,
-            'detail'      => $this->faker->text(50),
+
+            // 固定値で作成（全部同じ内容）
+            'first_name'  => '太郎',
+            'last_name'   => '山田',
+            'gender'      => 1, // 男性
+            'email'       => 'test@example.com',
+            'tel'         => '08012345678',
+            'address'     => '東京都渋谷区千駄ヶ谷1-2-3',
+            'building'    => '千駄ヶ谷マンション101',
+            'detail'      => '届いた商品が注文した商品ではありませんでした。商品の交換をお願いします。',
         ];
     }
 }

@@ -13,27 +13,14 @@ class AdminController extends Controller
     {
         $query = Contact::with('category');
 
-        // 名前検索（姓・名・フルネーム：完全一致 + 部分一致）
-        if ($request->filled('name')) {
-            $name = $request->name;
-            $query->where(function ($q) use ($name) {
-                // 完全一致
-                $q->where('last_name', $name)
-                  ->orWhere('first_name', $name)
-                  ->orWhereRaw("CONCAT(last_name, first_name) = ?", [$name])
-                // 部分一致
-                  ->orWhere('last_name', 'like', "%$name%")
-                  ->orWhere('first_name', 'like', "%$name%")
-                  ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%$name%"]);
-            });
-        }
-
-        // メールアドレス検索（完全一致 + 部分一致）
-        if ($request->filled('email')) {
-            $email = $request->email;
-            $query->where(function ($q) use ($email) {
-                $q->where('email', $email)
-                  ->orWhere('email', 'like', "%$email%");
+        // 🔍 キーワード検索（名前・フルネーム・メール）
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
+            $query->where(function ($q) use ($keyword) {
+                $q->where('last_name', 'like', "%$keyword%")
+                  ->orWhere('first_name', 'like', "%$keyword%")
+                  ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%$keyword%"])
+                  ->orWhere('email', 'like', "%$keyword%");
             });
         }
 
@@ -76,25 +63,14 @@ class AdminController extends Controller
     {
         $query = Contact::with('category');
 
-        // 名前検索（完全一致 + 部分一致）
-        if ($request->filled('name')) {
-            $name = $request->name;
-            $query->where(function ($q) use ($name) {
-                $q->where('last_name', $name)
-                  ->orWhere('first_name', $name)
-                  ->orWhereRaw("CONCAT(last_name, first_name) = ?", [$name])
-                  ->orWhere('last_name', 'like', "%$name%")
-                  ->orWhere('first_name', 'like', "%$name%")
-                  ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%$name%"]);
-            });
-        }
-
-        // メールアドレス検索（完全一致 + 部分一致）
-        if ($request->filled('email')) {
-            $email = $request->email;
-            $query->where(function ($q) use ($email) {
-                $q->where('email', $email)
-                  ->orWhere('email', 'like', "%$email%");
+        // 🔍 キーワード検索（名前・フルネーム・メール）
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
+            $query->where(function ($q) use ($keyword) {
+                $q->where('last_name', 'like', "%$keyword%")
+                  ->orWhere('first_name', 'like', "%$keyword%")
+                  ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%$keyword%"])
+                  ->orWhere('email', 'like', "%$keyword%");
             });
         }
 

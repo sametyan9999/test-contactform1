@@ -10,15 +10,15 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('last_name');
-            $table->string('first_name');
+            $table->string('last_name');   // 姓
+            $table->string('first_name');  // 名
             $table->tinyInteger('gender'); // 1: 男性, 2: 女性, 3: その他
-            $table->string('email');
-            $table->string('tel')->nullable();
-            $table->string('address')->nullable();
-            $table->string('building')->nullable(); // ← 最初から nullable
-            $table->unsignedBigInteger('category_id');
-            $table->text('detail');
+            $table->string('email', 255);       // メールアドレス
+            $table->string('tel', 15);       // 電話番号（必須に変更）
+            $table->string('address')->nullable();   // 住所（任意）
+            $table->string('building')->nullable();  // 建物名（任意）
+            $table->unsignedBigInteger('category_id'); // カテゴリID
+            $table->text('detail');        // お問い合わせ内容
             $table->timestamps();
         });
     }

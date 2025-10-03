@@ -10,7 +10,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            '商品の お届けについて',
+            '商品のお届けについて',
             '商品の交換について',
             '商品トラブル',
             'ショップへのお問い合わせ',
@@ -19,7 +19,7 @@ class CategoriesTableSeeder extends Seeder
 
         foreach ($categories as $category) {
             DB::table('categories')->insert([
-                'content' => $category,
+                'content'    => $category,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

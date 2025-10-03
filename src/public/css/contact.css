@@ -21,7 +21,8 @@
 /* 各項目 */
 .form-group {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    /* 上揃え */
     padding: 16px 0;
     margin: 0;
     border-bottom: none;
@@ -34,6 +35,7 @@
     color: #5c534a;
     flex-shrink: 0;
     text-align: left;
+    padding-top: 12px;
 }
 
 .required {
@@ -41,47 +43,27 @@
     margin-left: 5px;
 }
 
-/* 入力欄（共通：薄茶背景＋枠なし） */
+/* 入力欄とエラーを縦並び */
+.input-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 入力欄 */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"],
-.form-group textarea {
-    flex: 1;
+.form-group textarea,
+.form-group select {
     padding: 12px 14px;
     border: none;
     border-radius: 0;
     font-size: 16px;
     color: #5c534a;
     background: #f9f5f0;
-    /* ★ 薄茶色 */
     box-sizing: border-box;
     outline: none;
-}
-
-/* セレクト（お問い合わせの種類） */
-.form-group select {
-    flex: 1;
-    max-width: 400px;
-    padding: 12px 14px;
-    border: none;
-    border-radius: 0;
-    font-size: 16px;
-    color: #b0a9a3;
-    /* 初期は淡いグレー */
-    background: #f9f5f0;
-    /* ★ 薄茶色 */
-    box-sizing: border-box;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M0 0h12L6 7z' fill='%235c534a'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px 7px;
-}
-
-.form-group select option {
-    color: #5c534a;
 }
 
 /* プレースホルダー */
@@ -96,7 +78,7 @@
     width: 100%;
 }
 
-.name-inputs input {
+.name-inputs .input-box {
     flex: 1;
 }
 
@@ -114,7 +96,6 @@
     border: none;
     text-align: center;
     background: #f9f5f0;
-    /* ★ 薄茶色 */
 }
 
 .tel-inputs span {
@@ -124,10 +105,9 @@
 
 /* 性別ラジオ */
 .radio-group {
-    flex: 1;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
     font-size: 16px;
     color: #5c534a;
 }
@@ -135,20 +115,13 @@
 .radio-group label {
     display: inline-flex;
     align-items: center;
-    gap: 2px;
-    line-height: 1;
-}
-
-.radio-group input[type="radio"] {
-    margin: 0;
-    padding: 0;
+    gap: 4px;
 }
 
 /* お問い合わせ内容 */
 textarea {
     min-height: 120px;
     resize: none;
-    /* ★ リサイズできないようにする */
 }
 
 /* エラー */

@@ -1,83 +1,87 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @endsection
 
 @section('content')
 <div class="admin-wrapper">
-    <h1 class="admin-title">Admin</h1>
+    <div class="admin-inner">
+        <h1 class="admin-title">Admin</h1>
 
-    {{-- フィルター --}}
-    <form action="{{ route('admin.index') }}" method="GET" class="filters-form">
-        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
+        {{-- フィルター --}}
+        <form action="{{ route('admin.index') }}" method="GET" class="filters-form">
+            <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
 
-        <select name="gender">
-            <option value="" disabled {{ request('gender') === null || request('gender') === '' ? 'selected' : '' }}>性別</option>
-            <option value="all" {{ request('gender') === 'all' ? 'selected' : '' }}>全て</option>
-            <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
-            <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
-            <option value="3" {{ request('gender') == '3' ? 'selected' : '' }}>その他</option>
-        </select>
+            <select name="gender">
+                <option value="" disabled {{ request('gender') === null || request('gender') === '' ? 'selected' : '' }}>性別</option>
+                <option value="all" {{ request('gender') === 'all' ? 'selected' : '' }}>全て</option>
+                <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
+                <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
+                <option value="3" {{ request('gender') == '3' ? 'selected' : '' }}>その他</option>
+            </select>
 
-        <select name="category_id">
-            <option value="">お問い合わせの種類</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                    {{ $category->content }}
-                </option>
-            @endforeach
-        </select>
+            <select name="category_id">
+                <option value="">お問い合わせの種類</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->content }}
+                    </option>
+                @endforeach
+            </select>
 
-        <input type="date" name="date" value="{{ request('date') }}">
+            {{-- 日付け選択 --}}
+            <input type="text" name="date" value="{{ request('date') }}" placeholder="年/月/日">
 
-        <button type="submit" class="btn btn-search">検索</button>
-        <a href="{{ route('admin.index') }}" class="btn btn-reset">リセット</a>
-    </form>
+            <button type="submit" class="btn btn-search">検索</button>
+            <a href="{{ route('admin.index') }}" class="btn btn-reset">リセット</a>
+        </form>
 
-    {{-- 上部バー --}}
-    <div class="topbar">
-        <div class="topbar-left">
-            <a href="{{ route('admin.export', request()->all()) }}" class="btn btn-export">エクスポート</a>
+        {{-- 上部バー --}}
+        <div class="topbar">
+            <div class="topbar-left">
+                <a href="{{ route('admin.export', request()->all()) }}" class="btn btn-export">エクスポート</a>
+            </div>
+            <div class="pagination-top">
+                {{ $contacts->appends(request()->all())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
-        <div class="pagination-top">
-            {{ $contacts->appends(request()->all())->links('pagination::bootstrap-4') }}
-        </div>
-    </div>
 
-    {{-- 一覧テーブル --}}
-    <table class="contact-table">
-        <thead>
-            <tr>
-                <th>お名前</th>
-                <th>性別</th>
-                <th>メールアドレス</th>
-                <th>お問い合わせの種類</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($contacts as $contact)
+        {{-- 一覧テーブル --}}
+        <table class="contact-table">
+            <thead>
                 <tr>
-                    <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
-                    <td>
-                        @if($contact->gender == 1) 男性
-                        @elseif($contact->gender == 2) 女性
-                        @else その他
-                        @endif
-                    </td>
-                    <td>{{ $contact->email }}</td>
-                    <td>{{ $contact->category->content ?? '' }}</td>
-                    <td>
-                        <button type="button" class="btn btn-detail" data-id="{{ $contact->id }}">詳細</button>
-                    </td>
+                    <th>お名前</th>
+                    <th>性別</th>
+                    <th>メールアドレス</th>
+                    <th>お問い合わせの種類</th>
+                    <th></th>
                 </tr>
-            @empty
-                <tr><td colspan="5">データがありません</td></tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse($contacts as $contact)
+                    <tr>
+                        <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
+                        <td>
+                            @if($contact->gender == 1) 男性
+                            @elseif($contact->gender == 2) 女性
+                            @else その他
+                            @endif
+                        </td>
+                        <td>{{ $contact->email }}</td>
+                        <td>{{ $contact->category->content ?? '' }}</td>
+                        <td>
+                            <button type="button" class="btn btn-detail" data-id="{{ $contact->id }}">詳細</button>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="5">データがありません</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {{-- モーダル --}}
@@ -90,6 +94,8 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("modal");
@@ -106,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const data = await res.json();
 
-                // モーダルHTML挿入
                 modalBody.innerHTML = `
                     <dl class="detail-list">
                         <div><dt>お名前</dt><dd>${data.last_name} ${data.first_name}</dd></div>
@@ -135,6 +140,13 @@ document.addEventListener("DOMContentLoaded", () => {
     closeBtn.addEventListener("click", () => modal.classList.add("hidden"));
     modal.addEventListener("click", (e) => {
         if (e.target === modal) modal.classList.add("hidden");
+    });
+
+    // Flatpickr 初期化（日付入力用）
+    flatpickr("input[name='date']", {
+        dateFormat: "Y-m-d",
+        locale: "ja",
+        allowInput: true,
     });
 });
 </script>
