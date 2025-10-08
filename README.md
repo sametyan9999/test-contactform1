@@ -6,7 +6,7 @@
 1. リポジトリをクローン
    ```bash
    git clone https://github.com/sametyan9999/test-contactform1.git
-   cd test-contactform
+   cd test-contactform1
 2. コンテナをビルド・起動
    docker-compose up -d --build
 
