@@ -13,17 +13,34 @@
 ※ MySQL が OS によって起動しない場合があるので、それぞれのPCに合わせて docker-compose.yml を編集してください。
 
 ### Laravel環境構築
-1.	PHPコンテナに入る
-    docker-compose exec php bash
-2.	Composer依存関係をインストール
-    composer install
-3.	.env ファイルを作成し、環境変数を設定
-4.	アプリケーションキーを生成
-    php artisan key:generate
-5.	マイグレーションを実行
-    php artisan migrate
-6.	シーディングを実行
-    php artisan db:seed
+# 1. コンテナを起動
+docker-compose up -d --build
+
+# 2. PHPコンテナに入る
+docker-compose exec php bash
+
+# 3. Laravel本体のあるフォルダへ移動
+cd src
+
+# 4. 依存関係をインストール
+composer install
+
+# 5. .env ファイルを作成・編集
+cp .env.example .env
+# ↓ 編集（DB設定をDocker用に修正）
+# DB_HOST=mysql
+# DB_DATABASE=laravel_db
+# DB_USERNAME=laravel_user
+# DB_PASSWORD=laravel_pass
+
+# 6. アプリケーションキーを生成
+php artisan key:generate
+
+# 7. マイグレーションを実行
+php artisan migrate
+
+# 8. シーディングを実行
+php artisan db:seed
 
 ## 使用技術(実行環境)
 •	PHP 8.1
