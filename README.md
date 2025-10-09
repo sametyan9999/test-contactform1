@@ -27,7 +27,7 @@ composer install
 
 5. .env ファイルを作成・編集
 cp .env.example .env
-↓ 編集（DB設定をDocker用に修正）
+（DB設定をDocker用に修正）
 DB_HOST=mysql
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
