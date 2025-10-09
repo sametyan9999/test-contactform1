@@ -4,7 +4,7 @@ COPY php.ini /usr/local/etc/php/
 
 RUN apt-get update \
     && apt-get install -y default-mysql-client zlib1g-dev libzip-dev unzip curl git \
-    && docker-php-ext-install pdo_mysql zip
+    && docker-php-ext-install pdo_mysql zip bcmath
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \
