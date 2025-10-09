@@ -19,7 +19,11 @@ docker-compose exec php bash
 2. 依存関係をインストール
 composer install
 
-3. .env のDB設定を修正
+3. .env ファイルを作成
+cp .env.example .env
+
+4. .env のDB設定を修正（Docker用に修正）
+```env
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
@@ -27,15 +31,15 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 
-4. アプリケーションキーを生成
+
+5. アプリケーションキーを生成
 php artisan key:generate
 
-5. マイグレーションを実行
+6. マイグレーションを実行
 php artisan migrate
 
-6. シーディングを実行
+7. シーディングを実行
 php artisan db:seed
-
 
 ## 使用技術(実行環境)
 •	PHP 8.1
